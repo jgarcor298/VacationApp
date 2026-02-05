@@ -30,7 +30,7 @@ class VacacionController extends Controller
             $query->where('idtipo', $request->idtipo);
         }
         
-        $vacacions = $query->with('fotos', 'tipo')->paginate(10);
+        $vacacions = $query->with('fotos', 'tipo')->paginate(5);
         $tipos = Tipo::all();
         
         return view('vacacion.index', ['vacacions' => $vacacions, 'tipos' => $tipos]);

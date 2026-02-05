@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 class VacacionController extends Controller
 {
     public function __construct() {
-        // Basic auth for now. Roles handled in middleware or policy later if verified.
         $this->middleware('auth')->except(['index', 'show']);
     }
 
@@ -50,7 +49,6 @@ class VacacionController extends Controller
              return redirect()->route('vacacion.index')->with(['mensajeTexto' => 'No tienes permiso.']);
         }
         $vacacion = new Vacacion($request->except('foto'));
-        // $vacacion->iduser = Auth::id(); // No user in vacacion table
         
         $result = false;
         try {

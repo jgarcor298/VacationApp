@@ -18,5 +18,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('vacacion', VacacionController::class);
 Route::resource('users', UserController::class)->only(['index', 'update']);
+Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
 Route::post('reserva', [ReservaController::class, 'store'])->name('reserva.store');
 Route::post('comentario', [ComentarioController::class, 'store'])->name('comentario.store');

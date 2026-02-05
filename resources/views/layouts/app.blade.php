@@ -72,6 +72,11 @@
                                             Gestión de Usuarios
                                         </a>
                                     @endif
+                                    @if(Auth::user()->isAdmin() || Auth::user()->isAdvanced())
+                                        <a class="dropdown-item" href="{{ route('reservas.index') }}">
+                                            Gestión de Reservas
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

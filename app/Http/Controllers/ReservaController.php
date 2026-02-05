@@ -14,6 +14,17 @@ class ReservaController extends Controller
         $this->middleware('auth');
     }
 
+    public function index(): \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+    {
+        if (!Auth::user()->isAdmin() && !Auth::user()->isAdvanced()) {
+             return redirect()->route('vacacion.index')->with(['mensajeTexto' => 'No tienes permiso para ver las reservas.']);
+        }
+
+        $reservas = Reserva::with(['user', 'vacacion'])->orderBy('id', 'desc')->paginate(15);
+
+        return view('admin.reservas.index', compact('reservas'));
+    }
+
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([

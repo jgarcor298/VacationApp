@@ -21,9 +21,11 @@ class VacacionController extends Controller
 
     public function index(Request $request): View {
         $query = Vacacion::query();
-        if ($request->has('search')) {
-            $query->where('titulo', 'like', '%' . $request->search . '%')
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('titulo', 'like', '%' . $request->search . '%')
                   ->orWhere('pais', 'like', '%' . $request->search . '%');
+            });
         }
         if ($request->has('idtipo') && $request->idtipo != '') {
             $query->where('idtipo', $request->idtipo);

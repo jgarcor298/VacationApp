@@ -112,3 +112,17 @@ h6,
     color: white;
     text-decoration: underline;
 }
+
+/* Card Hover Effects */
+.hover-card {
+    transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.hover-card:hover .card-img-top {
+    transform: scale(1.05);
+}
